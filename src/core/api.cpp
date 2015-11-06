@@ -109,6 +109,7 @@
 #include "shapes/paraboloid.h"
 #include "shapes/sphere.h"
 #include "shapes/trianglemesh.h"
+#include "textures/bezier.h"
 #include "textures/bilerp.h"
 #include "textures/checkerboard.h"
 #include "textures/constant.h"
@@ -422,6 +423,8 @@ Reference<Texture<float> > MakeFloatTexture(const string &name,
         tex = CreateMixFloatTexture(tex2world, tp);
     else if (name == "bilerp")
         tex = CreateBilerpFloatTexture(tex2world, tp);
+    else if (name == "bezier")
+        tex = CreateBezierFloatTexture(tex2world, tp);
     else if (name == "imagemap")
         tex = CreateImageFloatTexture(tex2world, tp);
     else if (name == "uv")
@@ -456,6 +459,8 @@ Reference<Texture<Spectrum> > MakeSpectrumTexture(const string &name,
         tex = CreateMixSpectrumTexture(tex2world, tp);
     else if (name == "bilerp")
         tex = CreateBilerpSpectrumTexture(tex2world, tp);
+    else if (name == "bezier")
+        tex = CreateBezierSpectrumTexture(tex2world, tp);
     else if (name == "imagemap")
         tex = CreateImageSpectrumTexture(tex2world, tp);
     else if (name == "uv")
