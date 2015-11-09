@@ -36,6 +36,7 @@
 // textures/bezier.cpp*
 #include "stdafx.h"
 #include "textures/bezier.h"
+#include "core/texture.h"
 
 // CheckerboardTexture Method Definitions
 Texture<float> *CreateBezierFloatTexture(const Transform &tex2world,
@@ -114,9 +115,4 @@ Texture<Spectrum> *CreateBezierSpectrumTexture(const Transform &tex2world,
     cp[6] = tp.FindFloat("cp3u",  1.0); cp[7] = tp.FindFloat("cp3v", 1.0);
     return new Bezier2DTexture<Spectrum>(map, tex1, tex2, cp[0], cp[1], cp[2],
                                          cp[3], cp[4], cp[5], cp[6], cp[7]);
-}
-
-// Determine if a texture coordinate is inside of bezier curve
-bool insideCurve(float u, float v) {
-    return false;
 }

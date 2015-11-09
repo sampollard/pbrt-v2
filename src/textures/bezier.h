@@ -68,7 +68,7 @@ public:
     T Evaluate(const DifferentialGeometry &dg) const {
         float s, t, dsdx, dtdx, dsdy, dtdy;
         mapping->Map(dg, &s, &t, &dsdx, &dtdx, &dsdy, &dtdy);
-        if (false) // insideCurve(s, t))
+        if (insideCurve(s, t))
             return tex1->Evaluate(dg);
         return tex2->Evaluate(dg);
     }
@@ -77,7 +77,29 @@ private:
     TextureMapping2D *mapping;
     Reference<Texture<T> > tex1, tex2;
     float cpuv[4][2];
-    // bool insideCurve(float u, float v) const;
+    // Compute the bezier curve at time t
+    float *bezier(float t) const {
+        if (t < 0.f || t > 1.f)
+            Warning("t is not in [0,1]");
+        return float[2] = {(1-t)*(1-t)*(1-t)};
+    }
+    // Determine if a texture coordinate is inside of bezier curve
+    bool insideCurve(float u, float v) const {
+        // Perform a binary search to find the value of t which minimizes
+        // the distance to (u,v)
+        float min_d = INFINITY;
+        float min_t = 0.f;
+        float eps = 0.5;
+        int octaves = 6;
+        for (int i = 0; i < octaves; i++) {
+
+        }
+
+        if (min_d < eps)
+            return false;
+        else
+            return true;
+    }
 };
 
 Texture<float> *CreateBezierFloatTexture(const Transform &tex2world,
